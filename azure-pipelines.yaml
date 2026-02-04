@@ -17,6 +17,7 @@ steps:
     command: buildAndPush
     repository: $(imageFrontend)
     dockerfile: apps/frontend/Dockerfile
+    buildContext: apps/frontend
     containerRegistry: 'manu-personal-dh'
     tags: |
       $(tag)
@@ -27,7 +28,8 @@ steps:
   inputs:
     command: buildAndPush
     repository: $(imageBackend)
-    dockerfile: apps/backend/Dockerfile
+    dockerfile: apps/backend/src/Dockerfile
+    buildContext: apps/backend/src
     containerRegistry: 'manu-personal-dh'
     tags: |
       $(tag)
