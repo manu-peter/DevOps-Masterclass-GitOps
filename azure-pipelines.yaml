@@ -5,9 +5,9 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  registry: 'hub.fliplabs.net'
-  imageFrontend: '$(registry)/frontend'
-  imageBackend: '$(registry)/backend'
+  registry: 'docker.io'
+  imageFrontend: 'manu144/frontend'
+  imageBackend: 'manu144/backend'
   tag: '$(Build.BuildId)'
 
 steps:
@@ -17,7 +17,7 @@ steps:
     command: buildAndPush
     repository: $(imageFrontend)
     dockerfile: apps/frontend/Dockerfile
-    containerRegistry: 'fliplabs-registry'
+    containerRegistry: 'manu-personal-dh'
     tags: |
       $(tag)
       latest
@@ -28,7 +28,7 @@ steps:
     command: buildAndPush
     repository: $(imageBackend)
     dockerfile: apps/backend/Dockerfile
-    containerRegistry: 'fliplabs-registry'
+    containerRegistry: 'manu-personal-dh'
     tags: |
       $(tag)
       latest
