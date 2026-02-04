@@ -17,7 +17,7 @@ steps:
     command: buildAndPush
     repository: $(imageFrontend)
     dockerfile: apps/frontend/Dockerfile
-    containerRegistry: 'fliplabs-registry'  # your service connection name
+    containerRegistry: 'fliplabs-registry'
     tags: |
       $(tag)
       latest
@@ -32,3 +32,18 @@ steps:
     tags: |
       $(tag)
       latest
+
+- stage: TestPull
+  dependsOn: []
+  jobs:
+  - job: PullTest
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: 'Pull test image from registry'
+      inputs:
+        command: pull
+        repository: 'hub.fliplabs.net/backend-real'
+        tags: 'latest'
+        containerRegistry: 'fliplabs-registry'
