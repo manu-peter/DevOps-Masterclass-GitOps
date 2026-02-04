@@ -10,41 +10,25 @@ variables:
   imageBackend: '$(registry)/backend'
   tag: '$(Build.BuildId)'
 
-stages:
-- stage: TestPull
-  jobs:
-  - job: PullTest
-    steps:
-    - task: Docker@2
-      displayName: 'Pull test image from registry'
-      inputs:
-        command: pull
-        arguments: 'hub.fliplabs.net/backend-real:latest'
-        containerRegistry: 'fliplabs-registry'
+steps:
+- task: Docker@2
+  displayName: Build & push frontend
+  inputs:
+    command: buildAndPush
+    repository: $(imageFrontend)
+    dockerfile: apps/frontend/Dockerfile
+    containerRegistry: 'fliplabs-registry'
+    tags: |
+      $(tag)
+      latest
 
-- stage: BuildAndPush
-  dependsOn: TestPull
-  jobs:
-  - job: Build
-    steps:
-    - task: Docker@2
-      displayName: Build & push frontend
-      inputs:
-        command: buildAndPush
-        repository: $(imageFrontend)
-        dockerfile: apps/frontend/Dockerfile
-        containerRegistry: 'fliplabs-registry'
-        tags: |
-          $(tag)
-          latest
-
-    - task: Docker@2
-      displayName: Build & push backend
-      inputs:
-        command: buildAndPush
-        repository: $(imageBackend)
-        dockerfile: apps/backend/Dockerfile
-        containerRegistry: 'fliplabs-registry'
-        tags: |
-          $(tag)
-          latest
+- task: Docker@2
+  displayName: Build & push backend
+  inputs:
+    command: buildAndPush
+    repository: $(imageBackend)
+    dockerfile: apps/backend/Dockerfile
+    containerRegistry: 'fliplabs-registry'
+    tags: |
+      $(tag)
+      latest
