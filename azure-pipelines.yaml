@@ -19,8 +19,7 @@ stages:
       displayName: 'Pull test image from registry'
       inputs:
         command: pull
-        repository: 'hub.fliplabs.net/backend-real'
-        tags: 'latest'
+        arguments: 'hub.fliplabs.net/backend-real:latest'
         containerRegistry: 'fliplabs-registry'
 
 - stage: BuildAndPush
