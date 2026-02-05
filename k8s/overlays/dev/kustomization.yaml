@@ -4,19 +4,26 @@ kind: Kustomization
 resources:
   - ../../base
 
-patchesStrategicMerge:
-  - |-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
+patches:
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: frontend
+      spec:
+        replicas: 1
+    target:
+      kind: Deployment
       name: frontend
-    spec:
-      replicas: 1
-  - |-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
+
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: backend
+      spec:
+        replicas: 1
+    target:
+      kind: Deployment
       name: backend
-    spec:
-      replicas: 1
 
