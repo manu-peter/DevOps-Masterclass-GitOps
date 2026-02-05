@@ -6,4 +6,5 @@ namespace: project1
 resources:
   - frontend-all.yaml
   - backend-all.yaml
+  - ../namespace.yaml
 
