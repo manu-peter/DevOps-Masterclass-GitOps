@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: project1
 
 resources:
+  - namespace.yaml
   - frontend-all.yaml
   - backend-all.yaml
-
+  
