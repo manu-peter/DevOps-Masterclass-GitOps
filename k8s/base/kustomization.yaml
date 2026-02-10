@@ -7,4 +7,4 @@ resources:
   # - namespace.yaml
   - frontend-all.yaml
   - backend-all.yaml
-  
+  - Frontend-route.yaml
