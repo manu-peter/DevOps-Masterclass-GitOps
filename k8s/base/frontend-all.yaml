@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: hub.fliplabs.net/frontend-p1:latest
+        image: manu144/frontend:latest
         ports:
         - containerPort: 3000
 ---
