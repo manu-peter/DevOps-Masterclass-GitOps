@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: hub.fliplabs.net/backend-p1:latest
+        image: manu144/backend:latest
         ports:
         - containerPort: 8080
 ---
