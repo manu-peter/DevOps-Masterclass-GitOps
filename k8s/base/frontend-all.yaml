@@ -17,6 +17,14 @@ spec:
         image: manu144/frontend:latest
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - mountPath: /var/cache/nginx
+          name: nginx-cache
+        - mountPath: /var/run
+          name: nginx-cache
+      volumes:
+      - name: nginx-cache
+        emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
@@ -29,4 +37,3 @@ spec:
   - port: 80
     targetPort: 3000
   type: ClusterIP
-
