@@ -36,5 +36,5 @@ spec:
   ports:
   - port: 80
     targetPort: 8080
-    nodePort: 30081   # pick 30000-32767
+    nodePort: 31081   # pick 30000-32767
   type: NodePort
