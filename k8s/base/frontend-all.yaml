@@ -36,4 +36,5 @@ spec:
   ports:
   - port: 80
     targetPort: 8080
-  type: ClusterIP
+    nodePort: 30080   # pick 30000-32767
+  type: NodePort
