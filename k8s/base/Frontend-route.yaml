@@ -1,14 +1,12 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: frontend-route
-  namespace: project1
-  labels:
-    app: frontend
+  name: frontend
 spec:
-  host: frontend.apps.cluster1.geojit.tech
   to:
     kind: Service
     name: frontend
   port:
     targetPort: 80
+  tls:
+    termination: edge
