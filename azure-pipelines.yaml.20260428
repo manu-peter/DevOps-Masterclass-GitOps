@@ -1,0 +1,36 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  registry: 'docker.io'
+  imageFrontend: 'manu144/frontend'
+  imageBackend: 'manu144/backend'
+  tag: '$(Build.BuildId)'
+
+steps:
+- task: Docker@2
+  displayName: Build & push frontend
+  inputs:
+    command: buildAndPush
+    repository: $(imageFrontend)
+    dockerfile: apps/frontend/Dockerfile
+    buildContext: apps/frontend
+    containerRegistry: 'manu-personal-dh'
+    tags: |
+      $(tag)
+      latest
+
+- task: Docker@2
+  displayName: Build & push backend
+  inputs:
+    command: buildAndPush
+    repository: $(imageBackend)
+    dockerfile: apps/backend/src/Dockerfile
+    buildContext: apps/backend/src
+    containerRegistry: 'manu-personal-dh'
+    tags: |
+      $(tag)
+      latest
