@@ -27,3 +27,9 @@ patches:
       kind: Deployment
       name: backend
 
+
+images:
+- name: manu144/backend
+  newTag: latest
+- name: manu144/frontend
+  newTag: latest

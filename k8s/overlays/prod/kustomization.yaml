@@ -19,3 +19,9 @@ patchesStrategicMerge:
       namespace: project1
     spec:
       replicas: 3
+
+images:
+- name: manu144/backend
+  newTag: latest
+- name: manu144/frontend
+  newTag: latest
